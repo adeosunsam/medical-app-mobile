@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:medical_app_mobile/components/bottom_navigation.dart';
 import 'package:medical_app_mobile/components/colors.dart';
+import 'package:medical_app_mobile/components/slidable_widget.dart';
+import 'package:medical_app_mobile/components/top_rated_doctor.dart';
+import 'package:medical_app_mobile/widget/home_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<String> category = ["Dentist", "Heart Surgeon", "Bone Marrow"];
+  List<String> category = ["Dentist", "Heart Surgeon", "Bone Surgeon"];
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              categoryName("UpComming Appointment"),
+              categoryName(size, "UpComming Appointment"),
               SizedBox(
                 height: size.height * .21,
                 child: Stack(
@@ -217,10 +220,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 appointmentDetails(
+                                  size,
                                   "Sep 18,2022",
                                   Icons.calendar_month_outlined,
                                 ),
                                 appointmentDetails(
+                                  size,
                                   "(11 Am-03 Pm)",
                                   Icons.lock_clock,
                                 ),
@@ -270,255 +275,39 @@ class _HomeScreenState extends State<HomeScreen> {
                           begin: Alignment.topCenter,
                           end: Alignment.bottomLeft,
                           colors: [
-                            Color.fromARGB(255, 106, 110, 197),
+                            Color.fromARGB(255, 124, 128, 202),
+                            Color.fromARGB(255, 86, 91, 180),
                             ColorConstant.primaryColor
                           ],
                         ),
                       ),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          elevation: 5,
-                          primary: Colors.transparent,
-                          shadowColor: Colors.transparent,
-                        ),
-                        child: const Icon(
-                          Icons.dashboard_customize_rounded,
-                        ),
+                      child: const Icon(
+                        Icons.dashboard_customize_rounded,
+                        color: ColorConstant.secondaryColor,
                       ),
                     ),
                   ],
                 ),
               ),
-              categoryName("Category"),
-              SizedBox(
+              categoryName(size, "Category"),
+              Container(
                 height: size.height * 0.055,
+                margin: EdgeInsets.only(left: size.width * .07),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: category.length,
                   itemBuilder: (context, index) {
-                    return categoryBuilder(index);
+                    return categoryBuilder(size, category[index]);
                   },
                 ),
               ),
-              categoryName("Top Rated Doctor"),
-              topRated(
-                "assets/images/nurse1.png",
-                "Dr Ronald Richard",
-                "Heart Surgeon",
-                "4.5",
-                "11 Am-03 Pm",
-              ),
-              topRated(
-                "assets/images/doctor2.png",
-                "Dr Jenny Wilson",
-                "Dental Specialist",
-                "4.9",
-                "10 Am-12 Pm",
-              ),
+              categoryName(size, "Top Rated Doctor"),
+              for (int i = 0; i < topRatedDoctor.length - 1; i++)
+                SlidableWidget(child: topRated(size, topRatedDoctor[i]))
             ],
           ),
         ),
         bottomNavigationBar: const BottomNavigator(),
-      ),
-    );
-  }
-
-  Widget topRated(
-    String image,
-    String name,
-    String profession,
-    String rating,
-    String scheduleTime,
-  ) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: size.width * .07,
-        vertical: size.height * .01,
-      ),
-      height: size.height * .11,
-      decoration: BoxDecoration(
-        color: ColorConstant.secondaryColor,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            height: size.height * .095,
-            width: size.width * .18,
-            margin: const EdgeInsets.only(left: 10),
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color.fromARGB(255, 69, 69, 69),
-                  Color.fromARGB(255, 54, 54, 54),
-                  Color.fromARGB(115, 37, 37, 37),
-                  Color.fromARGB(255, 69, 69, 69),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(8),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(
-                  image,
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.only(left: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    name,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Text(
-                    profession,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                        size: 15,
-                      ),
-                      const SizedBox(width: 5),
-                      Text(
-                        rating,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      const SizedBox(width: 15),
-                      const Icon(
-                        Icons.punch_clock,
-                        color: Colors.blueAccent,
-                        size: 17,
-                      ),
-                      const SizedBox(width: 5),
-                      Text(
-                        scheduleTime,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget categoryBuilder(int index) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      width: size.width * .35,
-      margin: EdgeInsets.only(left: size.width * 0.05),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: ColorConstant.secondaryColor,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          const Icon(
-            Icons.heart_broken_sharp,
-            color: Colors.red,
-            size: 17,
-          ),
-          Text(
-            category[index],
-            style: const TextStyle(
-              color: Color.fromARGB(255, 31, 33, 75),
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget categoryName(String title) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: size.width * .07,
-        vertical: size.height * .017,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 22,
-              color: ColorConstant.black,
-            ),
-          ),
-          const Text(
-            "See all",
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
-              color: Colors.grey,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget appointmentDetails(String text, IconData icon) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      width: size.width * .33,
-      height: size.height * .05,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: const Color.fromARGB(255, 88, 94, 214),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Icon(
-            icon,
-            color: Colors.white,
-            size: 17,
-          ),
-          Text(
-            text,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
       ),
     );
   }

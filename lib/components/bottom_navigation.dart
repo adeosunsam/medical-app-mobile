@@ -31,7 +31,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
           Radius.circular(20),
         ),
         child: BottomNavigationBar(
-          iconSize: 12,
+          iconSize: 10,
           currentIndex: 0,
           elevation: 0,
           showSelectedLabels: false,

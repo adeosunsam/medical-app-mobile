@@ -1,105 +1,115 @@
 import 'package:flutter/material.dart';
+import 'package:medical_app_mobile/Screens/detail_screen.dart';
 import 'package:medical_app_mobile/components/colors.dart';
 import 'package:medical_app_mobile/components/top_rated_doctor.dart';
 
-Widget topRated(Size size, TopRated doctorInfo) {
-  return Container(
-    margin: EdgeInsets.symmetric(
-      horizontal: size.width * .07,
-      vertical: size.height * .01,
+Widget topRated(BuildContext context, TopRated doctorInfo) {
+  Size size = MediaQuery.of(context).size;
+  return GestureDetector(
+    onTap: () => Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const DetailScreen(),
+      ),
     ),
-    height: size.height * .11,
-    decoration: BoxDecoration(
-      color: ColorConstant.secondaryColor,
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          height: size.height * .095,
-          width: size.width * .18,
-          margin: const EdgeInsets.only(left: 10),
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color.fromARGB(255, 69, 69, 69),
-                Color.fromARGB(255, 54, 54, 54),
-                Color.fromARGB(115, 37, 37, 37),
-                Color.fromARGB(255, 69, 69, 69),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(8),
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: AssetImage(
-                doctorInfo.image,
+    child: Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: size.width * .07,
+        vertical: size.height * .01,
+      ),
+      height: size.height * .11,
+      decoration: BoxDecoration(
+        color: ColorConstant.secondaryColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: size.height * .095,
+            width: size.width * .18,
+            margin: const EdgeInsets.only(left: 10),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color.fromARGB(255, 69, 69, 69),
+                  Color.fromARGB(255, 54, 54, 54),
+                  Color.fromARGB(115, 37, 37, 37),
+                  Color.fromARGB(255, 69, 69, 69),
+                ],
+              ),
+              borderRadius: BorderRadius.circular(8),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage(
+                  doctorInfo.image,
+                ),
               ),
             ),
           ),
-        ),
-        Expanded(
-          child: Container(
-            margin: const EdgeInsets.only(left: 15),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  doctorInfo.name,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: Colors.black,
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.only(left: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    doctorInfo.name,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
                   ),
-                ),
-                Text(
-                  doctorInfo.profession,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
-                    color: Colors.grey,
+                  Text(
+                    doctorInfo.profession,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                      color: Colors.grey,
+                    ),
                   ),
-                ),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                      size: 15,
-                    ),
-                    const SizedBox(width: 5),
-                    Text(
-                      doctorInfo.rating,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                        color: Colors.grey,
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                        size: 15,
                       ),
-                    ),
-                    const SizedBox(width: 15),
-                    const Icon(
-                      Icons.punch_clock,
-                      color: Colors.blueAccent,
-                      size: 17,
-                    ),
-                    const SizedBox(width: 5),
-                    Text(
-                      doctorInfo.scheduleTime,
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
+                      const SizedBox(width: 5),
+                      Text(
+                        doctorInfo.rating,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: Colors.grey,
+                        ),
                       ),
-                    ),
-                  ],
-                )
-              ],
+                      const SizedBox(width: 15),
+                      const Icon(
+                        Icons.punch_clock,
+                        color: Colors.blueAccent,
+                        size: 17,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        doctorInfo.scheduleTime,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }

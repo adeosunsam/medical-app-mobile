@@ -303,7 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               categoryName(size, "Top Rated Doctor"),
               for (int i = 0; i < topRatedDoctor.length - 1; i++)
-                SlidableWidget(child: topRated(size, topRatedDoctor[i]))
+                SlidableWidget(child: topRated(context, topRatedDoctor[i]))
             ],
           ),
         ),

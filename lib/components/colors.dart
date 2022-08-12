@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 class ColorConstant {
   static const primaryColor = Color(0xFF363CC0);

@@ -53,20 +53,21 @@ class _DetailScreenState extends State<DetailScreen> {
               height: size.height * .9,
               child: SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Container(
-                      width: double.infinity,
+                      width: size.width,
                       decoration: const BoxDecoration(
                         color: ColorConstant.primaryColor,
                         borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(25),
-                          bottomRight: Radius.circular(100),
+                          bottomLeft: Radius.circular(30),
+                          bottomRight: Radius.circular(0),
                         ),
                       ),
                       child: Stack(
                         children: [
                           Positioned(
-                            left: size.width * .33,
+                            left: size.width * .35,
                             bottom: 0,
                             child: Image.asset(
                               "assets/images/doctor3.png",
@@ -139,10 +140,8 @@ class _DetailScreenState extends State<DetailScreen> {
                                         color: const Color.fromARGB(
                                             255, 97, 103, 213),
                                       ),
-                                      child: const Icon(
-                                        Icons.arrow_back,
-                                        color: Colors.white,
-                                        size: 20,
+                                      child: Image.asset(
+                                        "assets/images/tooth.png",
                                       ),
                                     ),
                                     const SizedBox(width: 12),
@@ -172,7 +171,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: size.height * .03),
+                                SizedBox(height: size.height * .025),
                                 const Text(
                                   "Visiting hour",
                                   style: TextStyle(
@@ -181,7 +180,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                     fontSize: 16,
                                   ),
                                 ),
-                                SizedBox(height: size.height * .01),
+                                SizedBox(height: size.height * .005),
                                 const Text(
                                   "11 AM-12 PM",
                                   style: TextStyle(
@@ -190,7 +189,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                     fontSize: 18,
                                   ),
                                 ),
-                                SizedBox(height: size.height * .03),
+                                SizedBox(height: size.height * .025),
                                 const Text(
                                   "Total patients",
                                   style: TextStyle(
@@ -199,7 +198,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                     fontSize: 16,
                                   ),
                                 ),
-                                SizedBox(height: size.height * .01),
+                                SizedBox(height: size.height * .005),
                                 const Text(
                                   "1200+",
                                   style: TextStyle(
@@ -208,6 +207,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                     fontSize: 18,
                                   ),
                                 ),
+                                SizedBox(height: size.height * .025),
                               ],
                             ),
                           ),
@@ -270,7 +270,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                     },
                                     child: const Icon(
                                       Icons.arrow_back_ios,
-                                      size: 15,
+                                      size: 13,
                                       color: ColorConstant.primaryColor,
                                     ),
                                   ),
@@ -280,7 +280,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                         : scheduleMonth - 1],
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17,
+                                        fontSize: 16,
                                         color: ColorConstant.primaryColor),
                                   ),
                                   GestureDetector(
@@ -293,7 +293,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                     },
                                     child: const Icon(
                                       Icons.arrow_forward_ios,
-                                      size: 15,
+                                      size: 13,
                                       color: ColorConstant.primaryColor,
                                     ),
                                   )
@@ -378,6 +378,23 @@ class _DetailScreenState extends State<DetailScreen> {
                               fontSize: 20,
                             ),
                           ),
+                          Container(
+                            width: double.infinity,
+                            margin: EdgeInsets.symmetric(
+                              vertical: size.height * .02,
+                            ),
+                            height: size.height * .17,
+                            decoration: BoxDecoration(
+                              color: ColorConstant.secondaryColor,
+                              borderRadius: BorderRadius.circular(15),
+                              image: const DecorationImage(
+                                image: AssetImage(
+                                  "assets/images/map.png",
+                                ),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -387,7 +404,11 @@ class _DetailScreenState extends State<DetailScreen> {
             ),
             Container(
               width: double.infinity,
-              margin: EdgeInsets.symmetric(horizontal: size.width * .07),
+              margin: EdgeInsets.only(
+                top: 10,
+                left: size.width * .07,
+                right: size.width * .07,
+              ),
               height: size.height * .07,
               child: ElevatedButton(
                 onPressed: () {},
@@ -398,13 +419,28 @@ class _DetailScreenState extends State<DetailScreen> {
                     borderRadius: BorderRadius.circular(15),
                   ),
                 ),
-                child: const Text(
-                  "Book an Appointment",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white,
-                  ),
+                child: Stack(
+                  children: const [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Book an Appointment",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.white,
+                        size: 14,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

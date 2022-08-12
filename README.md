@@ -1,16 +1,7 @@
-# medical_app_mobile
+# Medical Mobile App
 
-A new Flutter project.
 
-## Getting Started
+<img src="assets/icon/onboarding.png" align="left" height="450" width="240" >
+<img src="assets/icon/homescreen.png" align="left" height="450" width="240" >
+<img src="assets/icon/detailscreen.png" align="left" height="450" width="240" >
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

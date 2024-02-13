@@ -1,7 +1,7 @@
 # Medical Mobile App
 
 You can access the apk file here
-- [Medical Flutter Apk](https://github.com/adeosunsam/medical-app-mobile/blob/master/lib/apk-file)
+- [Medical Flutter Apk](https://github.com/adeosunsam/medical-app-mobile/blob/master/lib/apk-file/base.apk)
 
 ## Below are the screenshot of the three screen
 
